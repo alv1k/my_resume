@@ -1,0 +1,43 @@
+body{
+    margin: 0px;
+}
+
+@media (min-width: 767px){
+    .header{
+        background-color: blue;
+        display: flex;
+    }
+    .header__profile_block__img{
+        width: 100%;
+    }
+    .header__profile_block__info{
+        width: 100%;
+    }
+    .header__profile_block__img__photo{        
+        width: 20%;
+    }
+    
+}
+
+@media (max-width: 768px)  {
+    .header{        
+        background-color: red;
+        text-align: center;
+        margin-left: 10px;
+    }
+    .header__profile_block__img{
+        width: 24px;
+    }
+    .header__profile_block__info{
+        width: 24px;
+    }
+    .header__profile_block__img__photo{
+        width: 20rem;
+    }
+}
+
+
+@media print { 
+    
+    
+}

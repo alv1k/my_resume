@@ -3,7 +3,6 @@ body{
 }
 .copied_text{
     font-size: 10px;
-    ;
 }
 
 /* pc screen */
@@ -21,7 +20,8 @@ body{
         margin-right: auto;
         font-size: 1.8rem;
     }
-    .header__profile_block__img__photo{        
+    .header__profile_block__img__photo{  
+        margin-top: 80px;      
         width: 60%;
     }
     .main{
@@ -43,8 +43,18 @@ body{
     .exp{
         margin-top: 10vh;
         margin-left: 10vw;
+        padding-bottom: 50px;
     }
     .exp__exp_text{
+        width: 10vw;
+        margin-left: 16vw;
+        text-align: right;
+    }
+    .exp__education_text{
+        width: 10vw;
+        margin-left: 12vw;
+    }
+    .exp__skills_text{
         width: 10vw;
         margin-left: 16vw;
     }
@@ -57,7 +67,7 @@ body{
 
     .exp__jobs__date{
         width: 15vw;
-        margin-left: 2vw;
+        margin-left: 1vw;
         font-family: Jost;
         font-size: 1.8rem;
         text-align: right;
@@ -70,7 +80,7 @@ body{
     }
     .exp__skills{
         font-weight: 100;
-        margin-left: 20vw;
+        margin-left: 31vw;
         width: 50vw;
         margin-top: 2vh;
         font-size: 1.6rem;
@@ -79,6 +89,17 @@ body{
     .exp__skills__descrip{
         
         margin-left: 13vw;
+    }
+    .portfolio_png{
+        width: 100vh;
+    }
+    .portfolio_png__mini{
+        
+        width: 50vh;
+    }
+    .portfolio_center{
+        text-align: center;
+        margin-bottom: 10px;
     }
 
     
@@ -116,6 +137,9 @@ body{
         font-size: 1.3rem;
         margin-left: auto;
         margin-right: auto;
+    }
+    .mail_icon_image{
+        margin-top: -7px;
     }
     .exp{
         width: 90vw;
@@ -168,7 +192,7 @@ body{
     }
     .header__profile_block__img{
         width: 100pt;
-        margin-left: 100pt;
+        margin-left: 120pt;
     }
     .header__profile_block__info{
         width: 300pt;
@@ -212,10 +236,20 @@ body{
     }
     .exp{
         margin-top: 5pt;
+
+        margin-top: 50px;
     }
     .exp__exp_text{
         width: 200pt;
         margin-left: 0pt;
+    }
+    .exp__education_text{
+        width: 10vw;
+        margin-left: 22vw;
+    }
+    .exp__skills_text{
+        width: 10vw;
+        margin-left: 26vw;
     }
     .exp__jobs{
         margin-right: auto;
@@ -234,14 +268,14 @@ body{
         text-align: right;
     }
     .exp__jobs__org{
-        margin-left: 5pt;
+        margin-left: 70pt;
         margin-top: 0pt;
         width: 400pt;
         font-family: Jost;
         font-size: 1.8rem;
     }
     .exp__skills{
-        margin-left: 70pt;
+        margin-left: 200pt;
         width: 50vw;
         margin-top: 2vh;
         font-size: 1.6rem;
@@ -257,5 +291,7 @@ body{
         background-color: #fcfaf2;
         padding-left: 70pt;
     }
-    
+    .portfolio{
+        display: none;
+    }
 }

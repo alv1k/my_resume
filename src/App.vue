@@ -5,9 +5,7 @@ import TheNavbar from './components/TheNavbar.vue'
 
 <template>
   <TheNavbar />
-  <transition  name="slide">
-    <router-view />
-  </transition>
+  <router-view />
 </template>
 
 <style scoped>

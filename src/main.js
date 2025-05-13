@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import './style.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import TheMain from './pages/TheMain.vue'
 import TheExperience from './pages/TheExperience.vue'
 import TheContacts from './pages/TheContacts.vue'
 import ThePortfolio from './pages/ThePortfolio.vue'
@@ -9,7 +11,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/portfolio'
+      component: TheMain
     },
     {
       path: '/experience',
@@ -26,7 +28,8 @@ const router = createRouter({
   ],
   history: createWebHistory()
 })
-
+const pinia = createPinia()
 const app = createApp(App)
 app.use(router)
+app.use(pinia)
 app.mount('#app')

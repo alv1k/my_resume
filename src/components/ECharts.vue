@@ -1,7 +1,6 @@
 <template>
   <VChart 
-    class="chart" 
-    :option="option" 
+    class="chart"
     :autoresize="true" 
   />
 </template>

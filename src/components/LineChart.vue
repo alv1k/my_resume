@@ -27,7 +27,7 @@ const option = computed(() => ({
   series: [{
     type: 'pie',
     data: props.optionSkills || [] // Защита от undefined
-  }]
+  }],
 }));
 
 // Регистрация необходимых компонентов

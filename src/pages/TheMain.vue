@@ -1,8 +1,12 @@
 <script setup> 
   import { ref } from 'vue';
   import { useStore } from '@/stores/index.js'
-  import ECharts from '@/components/ECharts.vue';
-  import TheSkillsChart from '@/components/TheSkillsChart.vue';
+  import { Cake } from 'lucide-vue-next';
+  import { Baby } from 'lucide-vue-next';
+  import { Keyboard } from 'lucide-vue-next';
+  import { User } from 'lucide-vue-next';
+  import PieChart from '@/components/PieChart.vue';
+  import LineChart from '@/components/LineChart.vue';
 
   const { user } = useStore()
   let dataUserStore = user;
@@ -13,23 +17,29 @@
     console.log(isSecondName, 'click here');
   }
 
-  const option = ref({
+  const softSkillsOptions = ref({
     title: {
       text: 'Soft skills',
-      left: 'top'
+      left: 'top',
+      textStyle: {
+        color: "white"
+      }
     },
     tooltip: {
       trigger: 'item'
     },
     legend: {
       orient: 'vertical',
-      left: 'right'
+      left: 'right',
+      textStyle: {
+        color: "white"
+      }
     },
     series: [
       {
         name: 'Данные',
         type: 'pie',
-        radius: '50%',
+        radius: '70%',
         data: [
           { value: 30, name: 'Ответственность' },
           { value: 30, name: 'Коммуникабельность' },
@@ -41,21 +51,30 @@
             shadowOffsetX: 0,
             shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
-        }
+        },
+        label: {
+          show: false,
+        },
       }
-    ]
+    ],
   });
-  const optionSkills = ref({
+  const hardSkillsOption = ref({
     title: {
       text: 'Hard skills',
-      left: 'top'
+      left: 'top',
+      textStyle: {
+        color: "white"
+      }
     },
     tooltip: {
       trigger: 'item'
     },
     legend: {
       orient: 'vertical',
-      left: 'right'
+      left: 'right',
+      textStyle: {
+        color: "white"
+      }
     },
     xAxis: { data: ['2007', '2013', '2016', '2020', '2024', 'now'] },
     yAxis: {},
@@ -77,7 +96,10 @@
             shadowOffsetX: 0,
             shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
-        }
+        },
+        label: {
+          show: false,
+        },
       },
       {
         name: 'CSS',
@@ -143,17 +165,56 @@
 </script>
 <template>
   <div class="p-14">
-    <div>
-      <p class="text-base text-center" @click="handleNameClick()">
-        {{ dataUserStore.userData.name + ' ' + dataUserStore.userData.last_name }}
-        {{ isSecondName ? dataUserStore.userData.second_name : '' }}
-      </p>
-      <p>Дата рождения: {{ dataUserStore.userData.date_of_birth.split('-').reverse().join('.') }}</p>
-      <p>Возраст: {{ ((new Date()).getFullYear() - (new Date(dataUserStore.userData.date_of_birth.split('-').join(','))).getFullYear()) }}</p>
-      <p>Должность: front-end разработчик</p>
+    <div class="flex gap-15">
+      <div>
+        <img class="rounded-full w-25 " src="@/assets/images/photo.jpg" alt="photo">
+      </div>
+      <div>
+        <p class="text-base flex gap-2" @click="handleNameClick()">
+          <User />
+          {{ dataUserStore.userData.name + ' ' + dataUserStore.userData.last_name }}
+          {{ isSecondName ? dataUserStore.userData.second_name : '' }}
+        </p>
+        <p class="flex gap-2"><Cake />Дата рождения: {{ dataUserStore.userData.date_of_birth.split('-').reverse().join('.') }}</p>
+        <p class="flex gap-2"><Baby />Возраст: {{ ((new Date()).getFullYear() - (new Date(dataUserStore.userData.date_of_birth.split('-').join(','))).getFullYear()) }}</p>
+        <p class="flex gap-2"><Keyboard />Должность: front-end разработчик</p>
+      </div>
+      <div>
+        <p>HTML/CSS</p>
+        <p>JS(Vue2/React)</p>
+        <p>PHP/MySQL</p>
+        <a href="https://github.com/alv1k/" target="_blank">github</a>
+      </div>
     </div>
     
-    <ECharts class="mt-24" :option="option" />
-    <TheSkillsChart :option="optionSkills" />
+    <h2 class="mt-20">О себе</h2>
+    <div class="grid grid-cols-2 py-10 gap-5">
+      <section class="flex flex-col gap-6">
+        <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
+          <h3>Образование</h3>
+          <p>2020-2022 магистратура СВФУ им. М.К. Аммосова, "Культурология"</p>
+          <p>2013-2016 аспирантура РГПУ им. А.И. Герцена, "Культурология"</p>
+          <p>2008-2013 специалитет РГПУ им. А.И. Герцена, "Культурология"</p>
+          <p>2003-2008 ФТЛ им. В.П. Ларионова</p>
+        </div>
+        <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
+          <h3>Опыт работы</h3>
+          <div class="" v-for="(item, index) in dataUserStore.userData.experience" :key="index">
+            <p>{{ index + 1 }}. {{ item.organization }} </p>
+            <p><span>Должность: </span>{{ item.position }}</p>
+            <p>c {{ item.start_date }} по {{ item.end_date ?? 'сег.день' }}</p>
+          </div>
+        </div>
+        <!-- <a href="">
+          <button class="w-full">
+            Скачать в формате PDF (1 лист)
+          </button>
+        </a> -->
+      </section>
+      <section class=" flex flex-col gap-5">
+        <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" />
+        <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" />
+      </section>
+    </div>
   </div>
 </template>

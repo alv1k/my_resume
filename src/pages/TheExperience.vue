@@ -2,12 +2,7 @@
 
 </script>
 <template>
-  <div>
-    the exp
-    arm kdm
-    journal
-    letter unicom pe
-    letter arm kdm
-    sql php
+  <div class="p-5 flex flex-col gap-10">
+    релевант
   </div>
 </template>

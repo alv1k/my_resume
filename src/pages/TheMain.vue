@@ -7,10 +7,17 @@
   import { User } from 'lucide-vue-next';
   import PieChart from '@/components/PieChart.vue';
   import LineChart from '@/components/LineChart.vue';
+  import { onMounted } from 'vue';
 
   const { user } = useStore()
   let dataUserStore = user;
   let isSecondName = false;
+
+  const isVisible = ref(false);
+
+  onMounted(() => {
+    isVisible.value = true;
+  });
 
   function handleNameClick() {
     isSecondName = !isSecondName
@@ -164,11 +171,14 @@
   
 </script>
 <template>
-  <div class="p-14">
-    <div class="flex gap-15">
-      <div>
-        <img class="rounded-full w-25 " src="@/assets/images/photo.jpg" alt="photo">
-      </div>
+  <div class="p-14 print:p-0">
+    <div class="flex justify-around gap-15">
+      
+      <Transition name="fade">
+        <div v-show="isVisible">
+          <img class="rounded-full w-25 " src="@/assets/images/photo.jpg" alt="photo">
+        </div>
+      </Transition>
       <div>
         <p class="text-base flex gap-2" @click="handleNameClick()">
           <User />
@@ -188,33 +198,49 @@
     </div>
     
     <h2 class="mt-20">О себе</h2>
-    <div class="grid grid-cols-2 py-10 gap-5">
-      <section class="flex flex-col gap-6">
-        <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
-          <h3>Образование</h3>
-          <p>2020-2022 магистратура СВФУ им. М.К. Аммосова, "Культурология"</p>
-          <p>2013-2016 аспирантура РГПУ им. А.И. Герцена, "Культурология"</p>
-          <p>2008-2013 специалитет РГПУ им. А.И. Герцена, "Культурология"</p>
-          <p>2003-2008 ФТЛ им. В.П. Ларионова</p>
-        </div>
-        <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
-          <h3>Опыт работы</h3>
-          <div class="" v-for="(item, index) in dataUserStore.userData.experience" :key="index">
-            <p>{{ index + 1 }}. {{ item.organization }} </p>
-            <p><span>Должность: </span>{{ item.position }}</p>
-            <p>c {{ item.start_date }} по {{ item.end_date ?? 'сег.день' }}</p>
+    <Transition name="fade">
+      <div v-show="isVisible" class="grid grid-cols-2 py-10 gap-5">
+        <section class="flex flex-col gap-6">
+          <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
+            <h3>Образование</h3>
+            <p>2020-2022 магистратура СВФУ им. М.К. Аммосова, "Культурология"</p>
+            <p>2013-2016 аспирантура РГПУ им. А.И. Герцена, "Культурология"</p>
+            <p>2008-2013 специалитет РГПУ им. А.И. Герцена, "Культурология"</p>
+            <p>2003-2008 ФТЛ им. В.П. Ларионова</p>
           </div>
-        </div>
-        <!-- <a href="">
-          <button class="w-full">
-            Скачать в формате PDF (1 лист)
-          </button>
-        </a> -->
-      </section>
-      <section class=" flex flex-col gap-5">
-        <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" />
-        <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" />
-      </section>
-    </div>
+          <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
+            <h3>Опыт работы</h3>
+            <div class="" v-for="(item, index) in dataUserStore.userData.experience" :key="index">
+              <p>{{ index + 1 }}. {{ item.organization }} </p>
+              <p><span>Должность: </span>{{ item.position }}</p>
+              <p>c {{ item.start_date }} по {{ item.end_date ?? 'сег.день' }}</p>
+            </div>
+          </div>
+          <a href="https://github.com/alv1k/my_resume/raw/main/alvik.pdf" target="_blank">
+            <button class="w-full">
+              Скачать в формате PDF (1 лист)
+            </button>
+          </a>
+        </section>
+        <section class=" flex flex-col gap-5">
+          <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" />
+          <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" />
+        </section>
+      </div>
+    </Transition>
   </div>
 </template>
+
+<style scoped>
+/* Анимация появления/исчезновения */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+</style>

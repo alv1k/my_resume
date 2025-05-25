@@ -1,5 +1,48 @@
-# Vue 3 + Vite
+	Алена Алексеева	
+HTML/CSS
+JS(Vue2/React)
+PHP/MySQL
+github
+Должность: front-end разработчик
+	Дата рождения: 
+Возраст: 
+	22.07.1991
+34
+Образование		
+2020-2022 
+	магистратура СВФУ им. М.К. Аммосова
+	"Культурология"
+2013-2016 
+	аспирантура РГПУ им. А.И. Герцена	"Культурология"
+2003-2008
+	ФТЛ им. В.П. Ларионова	
+Опыт работы
+		
+1. Платформа
+c 2025 по сег.день
+	Должность: front-end разработчик
+	
+2. venture
+c 2024 по 2025
+	Должность: front-end разработчик
+	
+3. образовательные огранизации
+c 2021 по 2024	Должность: преподаватель программирования
+	
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Проекты:
+		
+1. Сайт. Личный кабинет арендатора
+https://arenda.aokdm.ru
+HTML/CSS/React
+десктопная версия
+мобильная версия	
+2. Внутренний сервис по учету документации, имущества, товара и т.п.	HTML/CSS/Vue2	
+3. Внутренний сервис по учету документации, имущества, товара и т.п. (backend)	PHP/MySQL
+	
+4. E-mail рассылка по заказу, офомленному на сайте	HTML/CSS - tag table/adaptive/dark theme	
+5. E-mail рассылка по передаче показаний счетчиков	HTML/CSS - tag table/adaptive/dark theme	
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
++7 914 236 42 78
+alekseevaalena442@gmail.com
+Якутск, мкр. Марха

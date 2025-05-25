@@ -6,6 +6,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
+  base: '/my_resume/', // Замените на имя вашего репозитория
   optimizeDeps: {
     include: ['echarts']
   },

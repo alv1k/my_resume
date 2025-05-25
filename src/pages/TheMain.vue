@@ -171,12 +171,11 @@
   
 </script>
 <template>
-  <div class="p-14 print:p-0">
-    <div class="flex justify-around gap-15">
-      
+  <div class="lg:p-14 p-3">
+    <div class="lg:flex-row flex flex-col justify-around lg:gap-15 gap-6">      
       <Transition name="fade">
         <div v-show="isVisible">
-          <img class="rounded-full w-25 " src="@/assets/images/photo.jpg" alt="photo">
+          <img class="rounded-full lg:w-25 w-18 lg:mx-0 mx-auto" src="@/assets/images/photo.jpg" alt="photo">
         </div>
       </Transition>
       <div>
@@ -189,7 +188,7 @@
         <p class="flex gap-2"><Baby />Возраст: {{ ((new Date()).getFullYear() - (new Date(dataUserStore.userData.date_of_birth.split('-').join(','))).getFullYear()) }}</p>
         <p class="flex gap-2"><Keyboard />Должность: front-end разработчик</p>
       </div>
-      <div>
+      <div class="lg:text-start text-center">
         <p>HTML/CSS</p>
         <p>JS(Vue2/React)</p>
         <p>PHP/MySQL</p>
@@ -197,9 +196,9 @@
       </div>
     </div>
     
-    <h2 class="mt-20">О себе</h2>
+    <h2 class="mt-20 lg:text-start text-center">О себе</h2>
     <Transition name="fade">
-      <div v-show="isVisible" class="grid grid-cols-2 py-10 gap-5">
+      <div v-show="isVisible" class="grid lg:grid-cols-2 grid-cols-1 py-10 gap-5">
         <section class="flex flex-col gap-6">
           <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
             <h3>Образование</h3>
@@ -218,7 +217,9 @@
           </div>
           <a href="https://github.com/alv1k/my_resume/raw/main/alvik.pdf" target="_blank">
             <button class="w-full">
-              Скачать в формате PDF (1 лист)
+              Скачать в формате
+              <br class="lg:hidden block" />
+              PDF (1 лист)
             </button>
           </a>
         </section>

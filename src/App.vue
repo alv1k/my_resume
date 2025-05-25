@@ -6,7 +6,7 @@ import TheFooter from './components/TheFooter.vue'
 
 <template>
   <TheNavbar />
-  <div class="w-2/3 bg-gray-600 mx-auto">
+  <div class="lg:w-2/3 w-5/6 bg-gray-600 mx-auto">
     <router-view />
   </div>
   <TheFooter />

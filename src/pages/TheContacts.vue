@@ -22,17 +22,17 @@
   
 </script>
 <template>
-  <div>
+  <div class="">
     <Transition name="fade">
       <div v-show="isVisible">
-        <div class="p-5 mx-auto w-fit h-50 py-40">
+        <div class="p-5 mx-auto w-fit lg:h-50 lg:py-40 lg:text-base text-sm">
           <div class="flex gap-3">
             <PhoneIcon :size="14" class="align-middle mt-1" />
-            <a href="tel:+">+7 {{ dataUserStore.userData.phone_number }}</a>
+            <a :href="'tel:+7' + dataUserStore.userData.phone_number">+7 {{ dataUserStore.userData.phone_number }}</a>
           </div>
           <div class="flex gap-3">
             <AtSign :size="14" class="align-middle mt-1" />
-            <a href="mailto:">{{ dataUserStore.userData.email }}</a>
+            <a :href="'mailto:'+dataUserStore.userData.email">{{ dataUserStore.userData.email }}</a>
           </div>
           <div class="flex gap-3 cursor-default">
             <Navigation :size="14" class="align-middle mt-1" />
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="p-6 pb-50 flex flex-col gap-5 items-center">
-          <a target="_blank" :href="'mailto:' + dataUserStore.userData.email">
+          <a  :href="'mailto:' + dataUserStore.userData.email">
             <button class="text-nowrap flex gap-2">
               <Mail />
               Написать письмо

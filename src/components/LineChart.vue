@@ -10,8 +10,8 @@
 <script setup>
 import { ref } from 'vue';
 // import { use } from 'echarts/core';
-import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
+import * as echarts from 'echarts/core';
 import { BarChart, LineChart } from 'echarts/charts';
 import { computed } from 'vue';
 import {

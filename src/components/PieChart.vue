@@ -6,6 +6,7 @@
 </template>
 
 <script setup>
+import * as echarts from 'echarts/core';
 import { ref } from 'vue';
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
@@ -18,7 +19,7 @@ import {
 import VChart from 'vue-echarts';
 
 // Регистрация необходимых компонентов
-use([
+echarts.use([
   CanvasRenderer,
   PieChart,
   TitleComponent,

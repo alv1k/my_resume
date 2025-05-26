@@ -7,6 +7,7 @@
 </template>
 
 <script setup>
+import * as echarts from 'echarts/core';
 import { ref } from 'vue';
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
@@ -31,7 +32,7 @@ const option = computed(() => ({
 }));
 
 // Регистрация необходимых компонентов
-use([
+echarts.use([
   CanvasRenderer,
   BarChart,
   LineChart,

@@ -14,7 +14,6 @@
   onMounted(() => {
     isVisible.value = true;
   });
-  // const ECharts = defineAsyncComponent(() => import('@/components/ECharts.vue'));
   const { user } = useStore()
 
  

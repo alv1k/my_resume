@@ -1,84 +1,45 @@
 <template>
-  <v-chart
-    class="chart"
-    :option="option"
-    :autoresize="true"
+  <VChart 
+    class="chart" 
+    :option="option" 
+    :autoresize="true" 
   />
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
+import { use } from '/node_modules/echarts/core';
+import { CanvasRenderer } from '/node_modules/echarts/renderers';
+import { BarChart, LineChart } from '/node_modules/echarts/charts';
 import { computed } from 'vue';
-import * as echarts from 'echarts/core'; // Импортируем ядро
-import { PieChart } from 'echarts/charts';
-import { CanvasRenderer } from 'echarts/renderers';
 import {
+  GridComponent,
   TooltipComponent,
   LegendComponent
 } from 'echarts/components';
 import VChart from 'vue-echarts';
 
-// Регистрируем необходимые компоненты
-echarts.use([
+const props = defineProps({
+  optionSkills: Array
+});
+
+const option = computed(() => ({
+  series: [{
+    type: 'pie',
+    data: props.optionSkills || [] // Защита от undefined
+  }],
+}));
+
+// Регистрация необходимых компонентов
+use([
   CanvasRenderer,
-  PieChart,
+  BarChart,
+  LineChart,
+  GridComponent,
   TooltipComponent,
   LegendComponent
 ]);
 
-export default {
-  components: {
-    VChart
-  },
-  props: {
-    optionSkills: {
-      type: Array,
-      default: () => []
-    }
-  },
-  setup(props) {
-    const option = computed(() => ({
-      tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
-      },
-      legend: {
-        orient: 'vertical',
-        left: 10,
-        data: props.optionSkills.map(item => item.name)
-      },
-      series: [{
-        name: 'Skills',
-        type: 'pie',
-        radius: ['40%', '70%'],
-        avoidLabelOverlap: false,
-        itemStyle: {
-          borderRadius: 10,
-          borderColor: '#fff',
-          borderWidth: 2
-        },
-        label: {
-          show: false,
-          position: 'center'
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: '18',
-            fontWeight: 'bold'
-          }
-        },
-        labelLine: {
-          show: false
-        },
-        data: props.optionSkills
-      }]
-    }));
-
-    return {
-      option
-    };
-  }
-};
 </script>
 
 <style scoped>

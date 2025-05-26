@@ -8,9 +8,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import { use } from '/node_modules/echarts/core';
-import { CanvasRenderer } from '/node_modules/echarts/renderers';
-import { BarChart, LineChart } from '/node_modules/echarts/charts';
+import { use } from '@/../node_modules/echarts/core';
+import { CanvasRenderer } from '@/../node_modules/echarts/renderers';
+import { BarChart, LineChart } from '@/../node_modules/echarts/charts';
 import { computed } from 'vue';
 import {
   GridComponent,

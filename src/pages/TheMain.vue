@@ -6,7 +6,7 @@
   import { Keyboard } from 'lucide-vue-next';
   import { User } from 'lucide-vue-next';
   // import PieChart from '@/components/PieChart.vue';
-  // import LineChart from '@/components/LineChart.vue';
+  import LineChart from '@/components/LineChart.vue';
   import { onMounted } from 'vue';
 
   const { user } = useStore()
@@ -225,7 +225,7 @@
         </section>
         <section class=" flex flex-col gap-5">
           <!-- <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" /> -->
-          <!-- <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" /> -->
+          <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" />
         </section>
       </div>
     </Transition>

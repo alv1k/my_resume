@@ -9,6 +9,7 @@
 <script setup>
 import { ref } from 'vue';
 import { use } from 'echarts/core';
+import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { BarChart, LineChart } from 'echarts/charts';
 import { computed } from 'vue';
@@ -23,6 +24,13 @@ const props = defineProps({
   optionSkills: Array
 });
 
+const chart = echarts.init(dom);
+chart.setOption({
+  series: [{
+    type: 'pie',
+    data: props.optionSkills || [] // Защита от undefined
+  }],
+})
 const option = computed(() => ({
   series: [{
     type: 'pie',
@@ -31,7 +39,7 @@ const option = computed(() => ({
 }));
 
 // Регистрация необходимых компонентов
-use([
+echarts.use([
   CanvasRenderer,
   BarChart,
   LineChart,

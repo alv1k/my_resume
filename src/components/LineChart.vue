@@ -1,45 +1,44 @@
 <template>
   <VChart 
     class="chart" 
+    ref="lineChart"
     :option="option" 
     :autoresize="true" 
   />
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { use } from '@/../node_modules/echarts/core';
-import { CanvasRenderer } from '@/../node_modules/echarts/renderers';
-import { BarChart, LineChart } from '@/../node_modules/echarts/charts';
+<script>
+import { onMounted, ref, onBeforeUnmount } from 'vue';
 import { computed } from 'vue';
-import {
-  GridComponent,
-  TooltipComponent,
-  LegendComponent
-} from 'echarts/components';
-import VChart from 'vue-echarts';
+import * as echarts from 'echarts';
+export default {
+  setup() {
+    // 2. Создаем реактивную ссылку на DOM-элемент
+    const chartContainer = ref(null);
+    let chartInstance = null;
 
-const props = defineProps({
-  optionSkills: Array
-});
+    // 3. Инициализация после монтирования компонента
+    onMounted(() => {
+      if (chartContainer.value) {
+        chartInstance = echarts.init(chartContainer.value);
+        chartInstance.setOption({
+          xAxis: { type: 'category' },
+          yAxis: { type: 'value' },
+          series: [{ data: [10, 20, 30], type: 'line' }]
+        });
+      }
+    });
 
-const option = computed(() => ({
-  series: [{
-    type: 'pie',
-    data: props.optionSkills || [] // Защита от undefined
-  }],
-}));
+    // 4. Очистка при размонтировании
+    onBeforeUnmount(() => {
+      if (chartInstance) {
+        chartInstance.dispose();
+      }
+    });
 
-// Регистрация необходимых компонентов
-use([
-  CanvasRenderer,
-  BarChart,
-  LineChart,
-  GridComponent,
-  TooltipComponent,
-  LegendComponent
-]);
-
+    return { chartContainer };
+  }
+};
 </script>
 
 <style scoped>

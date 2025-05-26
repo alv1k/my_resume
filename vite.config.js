@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/': `${path.resolve(__dirname, 'src')}/`,
-      'echarts/core': '/node_modules/echarts/core/dist/echarts.core.js'
+      'echarts/core': path.resolve(__dirname, 'node_modules/echarts/core')
     }
   },  
   build: {

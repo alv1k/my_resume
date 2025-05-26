@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { use } from './node_modules/echarts/core';
+import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { PieChart } from 'echarts/charts';
 import {

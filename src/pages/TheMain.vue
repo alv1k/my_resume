@@ -5,8 +5,6 @@
   import { Baby } from 'lucide-vue-next';
   import { Keyboard } from 'lucide-vue-next';
   import { User } from 'lucide-vue-next';
-  // import PieChart from '@/components/PieChart.vue';
-  // import LineChart from '@/components/LineChart.vue';
   import ApexCharts from 'apexcharts'
 
   const { user } = useStore()
@@ -24,171 +22,150 @@
     console.log(isSecondName, 'click here');
   }
 
-  const softSkillsOptions = ref({
-    title: {
-      text: 'Soft skills',
-      left: 'top',
-      textStyle: {
-        color: "white"
-      }
-    },
-    tooltip: {
-      trigger: 'item'
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'right',
-      textStyle: {
-        color: "white"
-      }
-    },
-    series: [
-      {
-        name: 'Данные',
-        type: 'pie',
-        radius: '70%',
-        data: [
-          { value: 30, name: 'Ответственность' },
-          { value: 30, name: 'Коммуникабельность' },
-          { value: 40, name: 'Пунктуальность' }
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        },
-        label: {
-          show: false,
-        },
-      }
-    ],
-  });
-  const hardSkillsOption = ref({
-    title: {
-      text: 'Hard skills',
-      left: 'top',
-      textStyle: {
-        color: "white"
-      }
-    },
-    tooltip: {
-      trigger: 'item'
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'right',
-      textStyle: {
-        color: "white"
-      }
-    },
-    xAxis: { data: ['2007', '2013', '2016', '2020', '2024', 'now'] },
-    yAxis: {},
-    series: [
-      {
-        name: 'HTML',
-        type: 'line',
-        data: [
-          { value: 5, name: 'базовые теги и стили' },
-          { value: 15, name: 'использование шаблонов' },
-          { value: 12, name: 'перерыв' },
-          { value: 45, name: 'сематическая, адаптивная верстка' },
-          { value: 66, name: 'анимации' },
-          { value: 86, name: 'кросс-браузерная верстка' },
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        },
-        label: {
-          show: false,
-        },
-      },
-      {
-        name: 'CSS',
-        type: 'line',
-        data: [
-          { value: 7, name: 'инлайновые стили' },
-          { value: 10, name: 'flex-box контейнеры' },
-          { value: 12, name: 'перерыв' },
-          { value: 55, name: 'сематическая, адаптивная верстка' },
-          { value: 76, name: 'grid-сетки' },
-          { value: 83, name: 'кросс-браузерная верстка' },
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      },
-      {
-        name: 'JS',
-        type: 'line',
-        data: [
-          { value: 0, name: 'не использовался' },
-          { value: 0, name: 'не использовался' },
-          { value: 0, name: 'не использовался' },
-          { value: 10, name: 'DOM-дерево, анимации' },
-          { value: 55, name: 'фрейворк vue2/vue3' },
-          { value: 76, name: 'react' },
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      },
-      {
-        name: 'PHP/MySQL',
-        type: 'line',
-        data: [
-          { value: 0, name: 'не использовался' },
-          { value: 0, name: 'не использовался' },
-          { value: 0, name: 'не использовался' },
-          { value: 0, name: 'не использовался' },
-          { value: 40, name: 'auth, cookies, SELECT * FROM' },
-          { value: 75, name: 'вложенные запросы' },
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      }
-    ]
-  })
-  // return { dataUserStore, isSecondName, handleNameClick, option };
-
   const apexChart = ref(null);
+  const pieChartDOM = ref(null);
   onMounted(() => {
-    // Access the div element after the component is mounted
-    console.log(apexChart.value); // This will log the div element
-    var options = {
+    
+    var lineOptions = {
       chart: {
-        type: 'line'
+        type: 'line',
+        width: '100%',
+        height: '50%',
+        animations: {
+          enabled: true,
+          speed: 800,
+          animateGradually: {
+              enabled: true,
+              delay: 150
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 350
+          }
+      }
       },
-      series: [{
-        name: 'sales',
-        data: [30,40,35,50,49,60,70,91,125]
-      }],
+      theme: {
+          mode: 'dark', 
+          palette: 'palette1', 
+          monochrome: {
+              enabled: false,
+              color: '#255aee',
+              shadeTo: 'light',
+              shadeIntensity: 0.65
+          },
+      },
+      
+      series:[
+        {
+          name: 'HTML',
+          data: [
+            { x: 1, y: 5, info: 'базовые теги и стили' },
+            { x: 2, y: 15, info: 'использование шаблонов' },
+            { x: 3, y: 12, info: 'перерыв' },
+            { x: 4, y: 45, info: 'семантическая, адаптивная верстка' },
+            { x: 5, y: 66, info: 'анимации' },
+            { x: 6, y: 86, info: 'кросс-браузерная верстка' }          
+          ],
+        },
+        {
+          name: 'CSS',
+          data: [
+            { x: 1, y: 7, info: "инлайновые стили" },
+            { x: 2, y: 10, info: "flex-box контейнеры" },
+            { x: 3, y: 12, info: "перерыв" },
+            { x: 4, y: 55, info: "сематическая, адаптивная верстка" },
+            { x: 5, y: 76, info: "grid-сетки" },
+            { x: 6, y: 83, info: "кросс-браузерная верстка" }
+          ],
+        },
+        {
+          name: 'JS',
+          data: [
+            { x: 1,y: 0, info: 'не использовался' },
+            { x: 2,y: 0, info: 'не использовался' },
+            { x: 3,y: 0, info: 'не использовался' },
+            { x: 4,y: 10, info: 'DOM-дерево, анимации' },
+            { x: 5,y: 55, info: 'фрейворк vue2/vue3' },
+            { x: 6,y: 76, info: 'react' },
+          ],
+        },
+        {
+          name: 'PHP/MySQL',
+          data: [
+            { x: 1, y: 0, info: 'не использовался' },
+            { x: 2, y: 0, info: 'не использовался' },
+            { x: 3, y: 0, info: 'не использовался' },
+            { x: 4, y: 0, info: 'не использовался' },
+            { x: 5, y: 40, info: 'auth, cookies, SELECT * FROM' },
+            { x: 6, y: 75, info: 'вложенные запросы' },
+          ],
+        }
+      ],
       xaxis: {
-        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+        type: 'category',
+        categories: ['2007', '2013', '2016', '2020', '2024', 'now'] 
+      },
+      tooltip: {
+        custom: function({ series, seriesIndex, dataPointIndex, w }) {
+          const data = w.config.series[seriesIndex].data[dataPointIndex];
+          const seriesName = w.config.series[seriesIndex].name;
+          
+          return `
+            <div class="apexcharts-tooltip-custom">
+              <div><strong>${seriesName + ': ' + data.info}</strong></div>
+            </div>
+          `;
+        }
       }
     }
+
+    var pieOptions = {
+      chart: {
+        type: 'pie',
+        width: '100%',
+        animations: {
+          enabled: true,
+          speed: 800,
+          animateGradually: {
+              enabled: true,
+              delay: 150
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 350
+          }
+      }
+      },
+      theme: {
+          mode: 'dark', 
+          palette: 'palette1', 
+          monochrome: {
+              enabled: false,
+              color: '#255aee',
+              shadeTo: 'light',
+              shadeIntensity: 0.65
+          },
+      },
+      
+      series:[1,2,3
+          //  { value: 30, name: 'Ответственность' },
+          // { value: 30, name: 'Коммуникабельность' },
+          // { value: 40, name: 'Пунктуальность' }
   
-    var chart = new ApexCharts(apexChart.value, options);
+        // {
+        //   name: 'Ответственность',
+        //   data: 30,
+        // },
+        
+      ],
+      
+    }
+
+    var lineChart = new ApexCharts(apexChart.value, lineOptions);
+    var pieChart = new ApexCharts(pieChartDOM.value, pieOptions);
   
-    chart.render();
+    lineChart.render();
+    pieChart.render();
   });
 
 
@@ -248,11 +225,9 @@
           </a>
         </section>
         <section class=" flex flex-col gap-5">
-          <div ref="apexChart">
-
-          </div>
-          <!-- <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" /> -->
-          <!-- <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" /> -->
+          <div ref="apexChart" class="bg-gray-700 rounded-sm"></div>
+          <div ref="pieChartDOM" class="bg-gray-700 rounded-sm"></div>
+            <!-- :option="hardSkillsOption" -->
         </section>
       </div>
     </Transition>

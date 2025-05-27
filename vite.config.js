@@ -6,18 +6,9 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
-  optimizeDeps: {
-    include: ['echarts']
-  },
   resolve: {
     alias: {
-      '@/': `${path.resolve(__dirname, 'src')}/`,
-      'echarts/core': path.resolve(__dirname, 'node_modules/echarts/core')
+      '@/': `${path.resolve(__dirname, 'src')}/`
     }
-  },  
-  build: {
-    rollupOptions: {
-      external: ['echarts/core'] // Помогает Tree-Shaking
-    }
-  }
+  },
 })

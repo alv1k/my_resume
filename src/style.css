@@ -68,3 +68,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.apexcharts-tooltip-custom {
+  padding: 5px 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #333333;
+}
+.apexcharts-tooltip-custom strong {
+  color: #333333;
+}

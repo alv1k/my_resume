@@ -5,7 +5,7 @@
   import { Baby } from 'lucide-vue-next';
   import { Keyboard } from 'lucide-vue-next';
   import { User } from 'lucide-vue-next';
-  import PieChart from '@/components/PieChart.vue';
+  // import PieChart from '@/components/PieChart.vue';
   import LineChart from '@/components/LineChart.vue';
 
   const { user } = useStore()
@@ -223,7 +223,7 @@
           </a>
         </section>
         <section class=" flex flex-col gap-5">
-          <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" />
+          <!-- <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" /> -->
           <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" />
         </section>
       </div>

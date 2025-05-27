@@ -1,44 +1,20 @@
 <template>
-  <VChart 
-    class="chart" 
-    ref="lineChart"
-    :option="option" 
-    :autoresize="true" 
+  <v-chart  
+    class="chart"
+    :autoresize="true"
   />
 </template>
 
 <script>
-import { onMounted, ref, onBeforeUnmount } from 'vue';
-import { computed } from 'vue';
+import { defineComponent } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import * as echarts from 'echarts';
-export default {
-  setup() {
-    // 2. Создаем реактивную ссылку на DOM-элемент
-    const chartContainer = ref(null);
-    let chartInstance = null;
+import VChart from 'vue-echarts';
 
-    // 3. Инициализация после монтирования компонента
-    onMounted(() => {
-      if (chartContainer.value) {
-        chartInstance = echarts.init(chartContainer.value);
-        chartInstance.setOption({
-          xAxis: { type: 'category' },
-          yAxis: { type: 'value' },
-          series: [{ data: [10, 20, 30], type: 'line' }]
-        });
-      }
-    });
+export default defineComponent({
+  components: { VChart }
+});
 
-    // 4. Очистка при размонтировании
-    onBeforeUnmount(() => {
-      if (chartInstance) {
-        chartInstance.dispose();
-      }
-    });
-
-    return { chartContainer };
-  }
-};
 </script>
 
 <style scoped>

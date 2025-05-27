@@ -9,8 +9,8 @@
 import { defineComponent } from 'vue';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import * as echarts from 'echarts';
+// import * as echarts from 'echarts/dist/echarts.js';
 import VChart from 'vue-echarts';
-
 export default defineComponent({
   components: { VChart }
 });

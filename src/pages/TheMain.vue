@@ -7,6 +7,7 @@
   import { User } from 'lucide-vue-next';
   // import PieChart from '@/components/PieChart.vue';
   import LineChart from '@/components/LineChart.vue';
+  import ApexCharts from 'apexcharts'
 
   const { user } = useStore()
   let dataUserStore = user;
@@ -167,6 +168,30 @@
     ]
   })
   // return { dataUserStore, isSecondName, handleNameClick, option };
+
+  const apexChart = ref(null);
+  onMounted(() => {
+    // Access the div element after the component is mounted
+    console.log(apexChart.value); // This will log the div element
+    var options = {
+      chart: {
+        type: 'line'
+      },
+      series: [{
+        name: 'sales',
+        data: [30,40,35,50,49,60,70,91,125]
+      }],
+      xaxis: {
+        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+      }
+    }
+  
+    var chart = new ApexCharts(apexChart.value, options);
+  
+    chart.render();
+  });
+
+
   
 </script>
 <template>
@@ -223,6 +248,9 @@
           </a>
         </section>
         <section class=" flex flex-col gap-5">
+          <div ref="apexChart">
+
+          </div>
           <!-- <PieChart class="bg-gray-700 p-5 rounded-sm" :option="softSkillsOptions" /> -->
           <LineChart class="bg-gray-700 p-5 rounded-sm" :option="hardSkillsOption" />
         </section>

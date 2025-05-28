@@ -4,6 +4,7 @@
       <router-link to="/">Главная</router-link>
       <!-- <router-link to="/experience">Релевантный опыт</router-link> -->
       <router-link to="/portfolio">Портфолио</router-link>
+      <router-link to="/hobby">Хобби</router-link>
       <router-link to="/contacts">Контакты</router-link>
     </ul>
   </div>

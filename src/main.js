@@ -7,6 +7,7 @@ import TheMain from './pages/TheMain.vue'
 import TheExperience from './pages/TheExperience.vue'
 import TheContacts from './pages/TheContacts.vue'
 import ThePortfolio from './pages/ThePortfolio.vue'
+import TheHobby from './pages/TheHobby.vue'
 const router = createRouter({
   routes: [
     {
@@ -24,6 +25,10 @@ const router = createRouter({
     {
       path: '/portfolio',
       component: ThePortfolio
+    },
+    {
+      path: '/hobby',
+      component: TheHobby
     },
   ],
   history: createWebHistory()

@@ -3,21 +3,18 @@
   import { AtSign } from 'lucide-vue-next';
   import { Navigation } from 'lucide-vue-next';
   import { useStore } from '@/stores/index.js';
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { Car } from 'lucide-vue-next';
   import { Mail } from 'lucide-vue-next';
   import { Phone } from 'lucide-vue-next';
-  import { onMounted } from 'vue';
 
   const isVisible = ref(false);
 
   onMounted(() => {
     isVisible.value = true;
   });
-  const { user } = useStore()
-
- 
-  let dataUserStore = user;
+  const { user } = useStore() 
+  let dataUserStore = user;  
   
 </script>
 <template>

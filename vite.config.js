@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [vue(), tailwindcss()],
   resolve: {
     alias: {
-      '@/': `${path.resolve(__dirname, 'my_resume')}/`
+      '@/': `${path.resolve(__dirname, 'src')}/`
     }
   },
 })

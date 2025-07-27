@@ -14,7 +14,39 @@ onMounted(() => {
 <template>
   <div>
     <Transition name="fade">
-      <div v-show="isVisible" class="p-5 flex flex-col gap-10">    
+      <div v-show="isVisible" class="p-5 flex flex-col gap-10">     
+        <div class="bg-gray-800/50 p-5">
+          <h2>1. Pet-проект. Таймер.</h2>
+          <p>HTML/CSS/React</p>
+          <div class="lg:flex lg:h-40 h-70 overflow-hidden">
+            <div class="lg:w-1/2">
+              <div class="flex gap-2 my-3">
+                <Monitor />
+                <p>десктопная версия</p>
+              </div>
+              <div>
+                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/pet-timer1.png" target="_blank">
+                  <img class="w-50 rounded-xl" src="@/assets/images/pet-timer1.png" alt="">
+                </a>
+              </div>
+            </div>
+            <div class="">
+              <div class="flex gap-2 my-3">
+                <Smartphone />
+                <p>мобильная версия</p>
+              </div>
+              <div>            
+                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/pet-timer2.png" target="_blank">
+                  <img class="w-30 rounded-xl lg:mx-0 mx-auto" src="@/assets/images/pet-timer2.png" alt="">
+                </a>            
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-2 mt-10">
+            <ExternalLink />
+            <a class="" target="_blank" href="https://pet-timer.vercel.app/">https://pet-timer.vercel.app/</a>
+          </div>
+        </div>
         <div class="bg-gray-800/50 p-5">
           <h2>1. Сайт. Личный кабинет арендатора</h2>
           <p>HTML/CSS/React</p>

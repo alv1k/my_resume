@@ -13,7 +13,7 @@ export const useUserStore = defineStore('user', {
       location: 'Якутск, мкр. Марха',
       experience: [ 
         {
-          organization: 'Платформа',
+          organization: 'freelance',
           description: '',
           start_date: '2025',
           end_date: null,

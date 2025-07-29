@@ -18,7 +18,7 @@ onMounted(() => {
         <div class="bg-gray-800/50 p-5">
           <h2>1. Pet-проект. Таймер.</h2>
           <p>HTML/CSS/React</p>
-          <div class="lg:flex lg:h-40 h-70 overflow-hidden">
+          <!-- <div class="lg:flex lg:h-40 h-70 overflow-hidden">
             <div class="lg:w-1/2">
               <div class="flex gap-2 my-3">
                 <Monitor />
@@ -41,7 +41,7 @@ onMounted(() => {
                 </a>            
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="flex gap-2 mt-10">
             <ExternalLink />
             <a class="" target="_blank" href="https://pet-timer.vercel.app/">https://pet-timer.vercel.app/</a>

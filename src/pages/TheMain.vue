@@ -193,7 +193,7 @@
         <p>HTML/CSS</p>
         <p>JS(Vue2/React)</p>
         <p>PHP/MySQL</p>
-        <a href="https://github.com/alv1k/" target="_blank">github</a>
+        <a href="https://github.com/alv1k/" target="_blank">github link</a>
       </div>
     </div>
     
@@ -202,19 +202,19 @@
       <div v-show="isVisible" class="grid lg:grid-cols-2 grid-cols-1 py-10 gap-5">
         <section class="flex flex-col gap-6">
           <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
-            <h3>Образование</h3>
-            <p>2020-2022 магистратура СВФУ им. М.К. Аммосова, "Культурология"</p>
-            <p>2013-2016 аспирантура РГПУ им. А.И. Герцена, "Культурология"</p>
-            <p>2008-2013 специалитет РГПУ им. А.И. Герцена, "Культурология"</p>
-            <p>2003-2008 ФТЛ им. В.П. Ларионова</p>
-          </div>
-          <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
             <h3>Опыт работы</h3>
             <div class="" v-for="(item, index) in dataUserStore.userData.experience" :key="index">
               <p>{{ index + 1 }}. {{ item.organization }} </p>
               <p><span>Должность: </span>{{ item.position }}</p>
               <p>c {{ item.start_date }} по {{ item.end_date ?? 'сег.день' }}</p>
             </div>
+          </div>
+          <div class="flex flex-col gap-5 bg-gray-700 p-5 rounded-sm">
+            <h3>Образование</h3>
+            <p>2020-2022 магистратура СВФУ им. М.К. Аммосова</p>
+            <p>2013-2016 аспирантура РГПУ им. А.И. Герцена</p>
+            <p>2008-2013 специалитет РГПУ им. А.И. Герцена</p>
+            <p>2003-2008 ФТЛ им. В.П. Ларионова</p>
           </div>
           <a href="https://github.com/alv1k/my_resume/raw/main/alvik.pdf" target="_blank">
             <button class="w-full">

@@ -99,20 +99,12 @@ const projects = computed(() => [
   {
     title: i18n.t('proj_timer_title'),
     description: i18n.t('proj_timer_desc'),
-    stack: ['HTML', 'CSS', 'React'],
+    stack: ['TypeScript', 'React'],
     type: 'frontend',
     link: 'https://pet-timer.vercel.app/',
     github: 'https://github.com/alv1k/pet-timer',
     desktopImg: 'pet-timer1.png',
     mobileImg: 'pet-timer2.png',
-  },
-  {
-    title: i18n.t('proj_stopwatch_title'),
-    description: i18n.t('proj_stopwatch_desc'),
-    stack: ['TypeScript'],
-    type: 'frontend',
-    link: null,
-    github: 'https://github.com/alv1k/stopwatchapp',
   },
   {
     title: i18n.t('proj_email_order_title'),

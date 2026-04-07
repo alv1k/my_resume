@@ -6,8 +6,10 @@ import { Github } from 'lucide-vue-next';
 import { X } from 'lucide-vue-next';
 import { ChevronLeft } from 'lucide-vue-next';
 import { ChevronRight } from 'lucide-vue-next';
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { useI18nStore } from '@/stores/modules/i18n';
 
+const i18n = useI18nStore();
 const isVisible = ref(false);
 const lightboxOpen = ref(false);
 const lightboxImages = ref([]);
@@ -48,20 +50,18 @@ onUnmounted(() => {
   window.removeEventListener('keydown', onKeydown);
 });
 
-const projects = [
+const projects = computed(() => [
   {
-    title: 'Сервис учета финансов и планирования',
-    description: 'Учет доходов и расходов, плановое ТО авто, планирование списка покупок',
+    title: i18n.t('proj_finance_title'),
+    description: i18n.t('proj_finance_desc'),
     stack: ['TypeScript', 'Vue'],
     type: 'fullstack',
     link: 'https://registry20prod.vercel.app',
     github: 'https://github.com/alv1k/registry20prod',
-    desktop: null,
-    mobile: null,
   },
   {
-    title: 'Личный кабинет арендатора',
-    description: 'Портал для арендаторов с функциями управления и передачи показаний',
+    title: i18n.t('proj_tenant_title'),
+    description: i18n.t('proj_tenant_desc'),
     stack: ['HTML', 'CSS', 'React'],
     type: 'frontend',
     link: 'https://arenda.aokdm.ru',
@@ -70,18 +70,16 @@ const projects = [
     mobileImg: 'arm-kdm-mobile.png',
   },
   {
-    title: 'VPN-сервис',
-    description: 'Управление подпиской к VPN-туннелю: бот, сайт и другие функции',
+    title: i18n.t('proj_vpn_title'),
+    description: i18n.t('proj_vpn_desc'),
     stack: ['Python'],
     type: 'fullstack',
     link: null,
     github: 'https://github.com/alv1k/vpn-service',
-    desktopImg: null,
-    mobileImg: null,
   },
   {
-    title: 'Внутренний сервис учета',
-    description: 'Учет документации, имущества и товара для внутреннего пользования',
+    title: i18n.t('proj_accounting_title'),
+    description: i18n.t('proj_accounting_desc'),
     stack: ['HTML', 'CSS', 'Vue2'],
     type: 'frontend',
     link: null,
@@ -90,18 +88,17 @@ const projects = [
     mobileImg: 'agreements-mobile.png',
   },
   {
-    title: 'Backend сервиса учета',
-    description: 'Серверная часть внутреннего сервиса: авторизация, API, работа с БД',
+    title: i18n.t('proj_backend_title'),
+    description: i18n.t('proj_backend_desc'),
     stack: ['PHP', 'MySQL'],
     type: 'backend',
     link: null,
     github: null,
     desktopImg: 'php-sql.png',
-    mobileImg: null,
   },
   {
-    title: 'Таймер',
-    description: 'Pet-проект — интерактивный таймер с адаптивным дизайном',
+    title: i18n.t('proj_timer_title'),
+    description: i18n.t('proj_timer_desc'),
     stack: ['HTML', 'CSS', 'React'],
     type: 'frontend',
     link: 'https://pet-timer.vercel.app/',
@@ -110,18 +107,16 @@ const projects = [
     mobileImg: 'pet-timer2.png',
   },
   {
-    title: 'Секундомер',
-    description: 'Pet-проект — приложение-секундомер',
+    title: i18n.t('proj_stopwatch_title'),
+    description: i18n.t('proj_stopwatch_desc'),
     stack: ['TypeScript'],
     type: 'frontend',
     link: null,
     github: 'https://github.com/alv1k/stopwatchapp',
-    desktopImg: null,
-    mobileImg: null,
   },
   {
-    title: 'E-mail шаблоны заказов',
-    description: 'Адаптивные email-рассылки для автоматических уведомлений о заказах',
+    title: i18n.t('proj_email_order_title'),
+    description: i18n.t('proj_email_order_desc'),
     stack: ['HTML', 'CSS'],
     type: 'email',
     link: null,
@@ -130,8 +125,8 @@ const projects = [
     mobileImgs: ['uc-letter-mobile.png', 'pe-letter-mobile.png'],
   },
   {
-    title: 'E-mail шаблон показаний счетчиков',
-    description: 'Адаптивный email-шаблон для передачи показаний приборов учета',
+    title: i18n.t('proj_email_meter_title'),
+    description: i18n.t('proj_email_meter_desc'),
     stack: ['HTML', 'CSS'],
     type: 'email',
     link: null,
@@ -139,7 +134,7 @@ const projects = [
     desktopImg: 'arm-kdm-letter.png',
     mobileImg: 'arm-kdm-letter-mobile.png',
   },
-];
+]);
 
 const images = import.meta.glob('@/assets/images/*', { eager: true });
 
@@ -152,12 +147,12 @@ function getImageUrl(filename) {
   return `https://github.com/alv1k/my_resume/raw/main/src/assets/images/${filename}`;
 }
 
-const typeLabels = {
-  frontend: 'Frontend',
-  backend: 'Backend',
-  fullstack: 'Full-stack',
-  email: 'Email',
-};
+const typeLabels = computed(() => ({
+  frontend: i18n.t('type_frontend'),
+  backend: i18n.t('type_backend'),
+  fullstack: i18n.t('type_fullstack'),
+  email: i18n.t('type_email'),
+}));
 
 const typeColors = {
   frontend: 'bg-blue-500/20 text-blue-400',
@@ -186,7 +181,7 @@ function openFromProject(project, filename) {
   <div class="lg:p-14 p-5">
     <Transition name="fade">
       <div v-show="isVisible">
-        <h2 class="text-2xl font-bold mb-8 lg:text-left text-center">Портфолио</h2>
+        <h2 class="text-2xl font-bold mb-8 lg:text-left text-center">{{ i18n.t('portfolio_title') }}</h2>
 
         <div class="grid lg:grid-cols-2 grid-cols-1 gap-6">
           <div
@@ -226,7 +221,7 @@ function openFromProject(project, filename) {
             >
               <!-- Single desktop -->
               <div v-if="project.desktopImg" class="flex flex-col gap-1.5">
-                <span class="text-xs text-gray-500 flex items-center gap-1"><Monitor :size="12" /> Desktop</span>
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Monitor :size="12" /> {{ i18n.t('desktop') }}</span>
                 <img
                   :src="getImage(project.desktopImg)"
                   class="thumb"
@@ -236,7 +231,7 @@ function openFromProject(project, filename) {
               </div>
               <!-- Multiple desktop -->
               <div v-if="project.desktopImgs" class="flex flex-col gap-1.5">
-                <span class="text-xs text-gray-500 flex items-center gap-1"><Monitor :size="12" /> Desktop</span>
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Monitor :size="12" /> {{ i18n.t('desktop') }}</span>
                 <div class="flex gap-2">
                   <img
                     v-for="img in project.desktopImgs"
@@ -250,7 +245,7 @@ function openFromProject(project, filename) {
               </div>
               <!-- Single mobile -->
               <div v-if="project.mobileImg" class="flex flex-col gap-1.5">
-                <span class="text-xs text-gray-500 flex items-center gap-1"><Smartphone :size="12" /> Mobile</span>
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Smartphone :size="12" /> {{ i18n.t('mobile') }}</span>
                 <img
                   :src="getImage(project.mobileImg)"
                   class="thumb"
@@ -260,7 +255,7 @@ function openFromProject(project, filename) {
               </div>
               <!-- Multiple mobile -->
               <div v-if="project.mobileImgs" class="flex flex-col gap-1.5">
-                <span class="text-xs text-gray-500 flex items-center gap-1"><Smartphone :size="12" /> Mobile</span>
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Smartphone :size="12" /> {{ i18n.t('mobile') }}</span>
                 <div class="flex gap-2">
                   <img
                     v-for="img in project.mobileImgs"
@@ -283,7 +278,7 @@ function openFromProject(project, filename) {
                 class="inline-flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 transition-colors"
               >
                 <ExternalLink :size="14" />
-                <span>Открыть</span>
+                <span>{{ i18n.t('open') }}</span>
               </a>
               <a
                 v-if="project.github"
@@ -298,7 +293,7 @@ function openFromProject(project, filename) {
                 v-if="!project.link && !project.github"
                 class="text-sm text-gray-600 italic"
               >
-                Закрытый проект
+                {{ i18n.t('private_project') }}
               </span>
             </div>
           </div>

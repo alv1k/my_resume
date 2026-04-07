@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Алексеева Алена — Резюме</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 11px;
+      line-height: 1.45;
+      color: #1a1a1a;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+
+    /* ---- Sidebar ---- */
+    .sidebar {
+      background: #f5f5f0;
+      padding: 28px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+
+    .sidebar-name {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-role {
+      text-align: center;
+      font-size: 11px;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .sidebar-links {
+      text-align: center;
+      font-size: 10px;
+      color: #444;
+    }
+    .sidebar-links a {
+      color: #444;
+      text-decoration: underline;
+    }
+
+    .sidebar-meta {
+      font-size: 10px;
+      color: #555;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .sidebar-meta span::before {
+      margin-right: 4px;
+    }
+
+    .sidebar-section {
+      border-top: 2px solid #d4a017;
+      padding-top: 8px;
+    }
+
+    .sidebar-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .sidebar-list li {
+      font-size: 10.5px;
+      color: #333;
+      padding-left: 12px;
+      position: relative;
+    }
+    .sidebar-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 5px;
+      height: 5px;
+      background: #d4a017;
+      border-radius: 50%;
+    }
+
+    /* Language bars */
+    .lang-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 5px;
+      font-size: 10.5px;
+    }
+    .lang-bar {
+      flex: 1;
+      height: 4px;
+      background: #ddd;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .lang-bar-fill {
+      height: 100%;
+      background: #1a1a1a;
+      border-radius: 2px;
+    }
+
+    /* ---- Main content ---- */
+    .main {
+      padding: 28px 28px 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #d4a017;
+      margin-bottom: 10px;
+    }
+
+    /* Experience block */
+    .exp-item {
+      margin-bottom: 12px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .exp-org {
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .exp-date {
+      font-size: 10px;
+      color: #777;
+      white-space: nowrap;
+    }
+
+    .exp-position {
+      font-size: 10.5px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .exp-list {
+      list-style: none;
+      padding: 0;
+    }
+    .exp-list li {
+      font-size: 10.5px;
+      color: #333;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .exp-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5.5px;
+      width: 5px;
+      height: 5px;
+      background: #d4a017;
+      border-radius: 50%;
+    }
+
+    .exp-achievement-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #555;
+      margin-top: 4px;
+      margin-bottom: 2px;
+      padding-left: 14px;
+    }
+
+    /* Education */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+      font-size: 10.5px;
+    }
+    .edu-date {
+      font-size: 10px;
+      color: #777;
+    }
+
+    /* About */
+    .about-item {
+      margin-bottom: 6px;
+    }
+    .about-item strong {
+      font-size: 10.5px;
+    }
+    .about-item p {
+      font-size: 10px;
+      color: #444;
+      margin-top: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <img class="photo" src="src/assets/images/photo.jpg" alt="photo">
+
+      <div>
+        <div class="sidebar-name">Алексеева Алена</div>
+        <div class="sidebar-role">full-stack разработчик</div>
+      </div>
+
+      <div class="sidebar-links">
+        <a href="https://github.com/alv1k/">github page link</a><br>
+        <a href="https://my-resume-alenas-projects-c2c07a1e.vercel.app/">мой сайт-визитка</a>
+      </div>
+
+      <div class="sidebar-meta">
+        <span>&#9906; Якутск, мкр. Марха</span>
+        <span>&#9200; Возраст: 34 года</span>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Контакты</div>
+        <div style="font-size:10.5px; color:#333; display:flex; flex-direction:column; gap:3px;">
+          <span>&#9742; +7 914-236-4278</span>
+          <span>&#9993; alekseevaalena442@gmail.com</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Языки</div>
+        <div class="lang-item"><span>Русский</span><div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div></div>
+        <div class="lang-item"><span>Английский</span><div class="lang-bar"><div class="lang-bar-fill" style="width:40%"></div></div></div>
+        <div class="lang-item"><span>Якутский</span><div class="lang-bar"><div class="lang-bar-fill" style="width:60%"></div></div></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Навыки</div>
+        <ul class="sidebar-list">
+          <li>HTML/CSS/Tailwind</li>
+          <li>JavaScript/TypeScript</li>
+          <li>Vue 2/3, React</li>
+          <li>Адаптивная верстка</li>
+          <li>Кроссбраузерность</li>
+          <li>PHP/MySQL</li>
+          <li>Python</li>
+          <li>Figma/pixel-perfect</li>
+          <li>Git/GitHub</li>
+          <li>работа в команде</li>
+          <li>решение задач клиентов</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Качества</div>
+        <ul class="sidebar-list">
+          <li>Пунктуальность</li>
+          <li>Ответственность</li>
+          <li>Вовлеченность</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+      <section>
+        <div class="section-title">Опыт работы</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-org">фриланс</span>
+            <span class="exp-date">с 2025 по наст. время</span>
+          </div>
+          <div class="exp-position">full-stack разработчик</div>
+          <ul class="exp-list">
+            <li>Разработка личного кабинета арендатора (React)</li>
+            <li>Сервис учета финансов: доходы/расходы, плановое ТО авто, списки покупок (TypeScript/Vue)</li>
+            <li>VPN-сервис: управление подписками, бот, сайт (Python)</li>
+            <li>Поиск заказчиков, посещение митапов, изучение новых технологий</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-org">ГК "Вентур"</span>
+            <span class="exp-date">2024 — 2025</span>
+          </div>
+          <div class="exp-position">frontend разработчик</div>
+          <ul class="exp-list">
+            <li>Внесение изменений и доработок в существующие сайты компании</li>
+            <li>Ведение внутреннего сервиса по учету бизнес-процессов компании</li>
+          </ul>
+          <div class="exp-achievement-label">Достижения:</div>
+          <ul class="exp-list">
+            <li>Проект по внутреннему сервису по итогам года завоевал награду "Проект года"</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-org">образовательные организации</span>
+            <span class="exp-date">2021 — 2024</span>
+          </div>
+          <div class="exp-position">преподаватель программирования</div>
+          <ul class="exp-list">
+            <li>Осуществление набора в учебную группу</li>
+            <li>Составление и ведение документации (КТП, РПД и т.п.)</li>
+            <li>Кураторство учеников в конкурсах</li>
+          </ul>
+          <div class="exp-achievement-label">Достижения:</div>
+          <ul class="exp-list">
+            <li>Ученики, участвовавшие в хакатонах, заняли призовые места</li>
+            <li>Была экспертом в конкурсе "Профессионалы-2023", курировала участие ученика</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Образование</div>
+        <div class="edu-item"><span>СВФУ им. М.К. Аммосова, магистр</span><span class="edu-date">2020 — 2022</span></div>
+        <div class="edu-item"><span>РГПУ им. А.И. Герцена, специалист</span><span class="edu-date">2008 — 2013</span></div>
+        <div class="edu-item"><span>ФТЛ им. В.П. Ларионова</span><span class="edu-date">2003 — 2008</span></div>
+      </section>
+
+      <section>
+        <div class="section-title">О себе</div>
+        <div class="about-item">
+          <strong>Шитьё</strong>
+          <p>Я приобрела бытовую швейную машинку Brother, а потом и оверлок. Шью для своих бытовых нужд: спортивный костюм, базовые черные кофточки, летние платья</p>
+        </div>
+        <div class="about-item">
+          <strong>Водные походы</strong>
+          <p>Однажды сходив на сплав по р. Буотама больше не смогла разлюбить этот вид отдыха, научилась грести веслами на рыбацкой надувной лодке и позже приобрела пакрафт, сходила в самостоятельные сплавы по р. Лена с Хатассов и Табаги до 203 мкр.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

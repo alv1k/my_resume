@@ -1,189 +1,359 @@
 <script setup>
-
 import { Monitor } from 'lucide-vue-next';
 import { Smartphone } from 'lucide-vue-next';
 import { ExternalLink } from 'lucide-vue-next';
-import { ref, onMounted } from 'vue';
+import { Github } from 'lucide-vue-next';
+import { X } from 'lucide-vue-next';
+import { ChevronLeft } from 'lucide-vue-next';
+import { ChevronRight } from 'lucide-vue-next';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const isVisible = ref(false);
+const lightboxOpen = ref(false);
+const lightboxImages = ref([]);
+const lightboxIndex = ref(0);
+
+function openLightbox(imgFilenames, startIndex = 0) {
+  const list = Array.isArray(imgFilenames) ? imgFilenames : [imgFilenames];
+  lightboxImages.value = list.map(f => getImage(f));
+  lightboxIndex.value = startIndex;
+  lightboxOpen.value = true;
+}
+
+function closeLightbox() {
+  lightboxOpen.value = false;
+}
+
+function lightboxPrev() {
+  if (lightboxIndex.value > 0) lightboxIndex.value--;
+}
+
+function lightboxNext() {
+  if (lightboxIndex.value < lightboxImages.value.length - 1) lightboxIndex.value++;
+}
+
+function onKeydown(e) {
+  if (!lightboxOpen.value) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxPrev();
+  if (e.key === 'ArrowRight') lightboxNext();
+}
 
 onMounted(() => {
   isVisible.value = true;
+  window.addEventListener('keydown', onKeydown);
 });
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown);
+});
+
+const projects = [
+  {
+    title: 'Сервис учета финансов и планирования',
+    description: 'Учет доходов и расходов, плановое ТО авто, планирование списка покупок',
+    stack: ['TypeScript', 'Vue'],
+    type: 'fullstack',
+    link: 'https://registry20prod.vercel.app',
+    github: 'https://github.com/alv1k/registry20prod',
+    desktop: null,
+    mobile: null,
+  },
+  {
+    title: 'Личный кабинет арендатора',
+    description: 'Портал для арендаторов с функциями управления и передачи показаний',
+    stack: ['HTML', 'CSS', 'React'],
+    type: 'frontend',
+    link: 'https://arenda.aokdm.ru',
+    github: null,
+    desktopImg: 'arm-kdm (1).png',
+    mobileImg: 'arm-kdm-mobile.png',
+  },
+  {
+    title: 'VPN-сервис',
+    description: 'Управление подпиской к VPN-туннелю: бот, сайт и другие функции',
+    stack: ['Python'],
+    type: 'fullstack',
+    link: null,
+    github: 'https://github.com/alv1k/vpn-service',
+    desktopImg: null,
+    mobileImg: null,
+  },
+  {
+    title: 'Внутренний сервис учета',
+    description: 'Учет документации, имущества и товара для внутреннего пользования',
+    stack: ['HTML', 'CSS', 'Vue2'],
+    type: 'frontend',
+    link: null,
+    github: null,
+    desktopImg: 'agreements.png',
+    mobileImg: 'agreements-mobile.png',
+  },
+  {
+    title: 'Backend сервиса учета',
+    description: 'Серверная часть внутреннего сервиса: авторизация, API, работа с БД',
+    stack: ['PHP', 'MySQL'],
+    type: 'backend',
+    link: null,
+    github: null,
+    desktopImg: 'php-sql.png',
+    mobileImg: null,
+  },
+  {
+    title: 'Таймер',
+    description: 'Pet-проект — интерактивный таймер с адаптивным дизайном',
+    stack: ['HTML', 'CSS', 'React'],
+    type: 'frontend',
+    link: 'https://pet-timer.vercel.app/',
+    github: 'https://github.com/alv1k/pet-timer',
+    desktopImg: 'pet-timer1.png',
+    mobileImg: 'pet-timer2.png',
+  },
+  {
+    title: 'Секундомер',
+    description: 'Pet-проект — приложение-секундомер',
+    stack: ['TypeScript'],
+    type: 'frontend',
+    link: null,
+    github: 'https://github.com/alv1k/stopwatchapp',
+    desktopImg: null,
+    mobileImg: null,
+  },
+  {
+    title: 'E-mail шаблоны заказов',
+    description: 'Адаптивные email-рассылки для автоматических уведомлений о заказах',
+    stack: ['HTML', 'CSS'],
+    type: 'email',
+    link: null,
+    github: null,
+    desktopImgs: ['uc-letter.png', 'pe-letter.png'],
+    mobileImgs: ['uc-letter-mobile.png', 'pe-letter-mobile.png'],
+  },
+  {
+    title: 'E-mail шаблон показаний счетчиков',
+    description: 'Адаптивный email-шаблон для передачи показаний приборов учета',
+    stack: ['HTML', 'CSS'],
+    type: 'email',
+    link: null,
+    github: null,
+    desktopImg: 'arm-kdm-letter.png',
+    mobileImg: 'arm-kdm-letter-mobile.png',
+  },
+];
+
+const images = import.meta.glob('@/assets/images/*', { eager: true });
+
+function getImage(filename) {
+  const key = `/src/assets/images/${filename}`;
+  return images[key]?.default || '';
+}
+
+function getImageUrl(filename) {
+  return `https://github.com/alv1k/my_resume/raw/main/src/assets/images/${filename}`;
+}
+
+const typeLabels = {
+  frontend: 'Frontend',
+  backend: 'Backend',
+  fullstack: 'Full-stack',
+  email: 'Email',
+};
+
+const typeColors = {
+  frontend: 'bg-blue-500/20 text-blue-400',
+  backend: 'bg-green-500/20 text-green-400',
+  fullstack: 'bg-purple-500/20 text-purple-400',
+  email: 'bg-amber-500/20 text-amber-400',
+};
+
+function getAllImages(project) {
+  const imgs = [];
+  if (project.desktopImg) imgs.push(project.desktopImg);
+  if (project.desktopImgs) imgs.push(...project.desktopImgs);
+  if (project.mobileImg) imgs.push(project.mobileImg);
+  if (project.mobileImgs) imgs.push(...project.mobileImgs);
+  return imgs;
+}
+
+function openFromProject(project, filename) {
+  const all = getAllImages(project);
+  const idx = all.indexOf(filename);
+  openLightbox(all, idx >= 0 ? idx : 0);
+}
 </script>
+
 <template>
-  <div>
+  <div class="lg:p-14 p-5">
     <Transition name="fade">
-      <div v-show="isVisible" class="p-5 flex flex-col gap-10">     
-        <div class="bg-gray-800/50 p-5">
-          <h2>1. Pet-проект. Таймер.</h2>
-          <p>HTML/CSS/React</p>
-          <!-- <div class="lg:flex lg:h-40 h-70 overflow-hidden">
-            <div class="lg:w-1/2">
-              <div class="flex gap-2 my-3">
-                <Monitor />
-                <p>десктопная версия</p>
+      <div v-show="isVisible">
+        <h2 class="text-2xl font-bold mb-8 lg:text-left text-center">Портфолио</h2>
+
+        <div class="grid lg:grid-cols-2 grid-cols-1 gap-6">
+          <div
+            v-for="(project, index) in projects"
+            :key="index"
+            class="card-project group"
+          >
+            <!-- Header -->
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="text-lg font-semibold leading-tight">{{ project.title }}</h3>
+              <span
+                class="shrink-0 text-xs font-medium px-2 py-1 rounded-full"
+                :class="typeColors[project.type]"
+              >
+                {{ typeLabels[project.type] }}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-gray-400 mb-4 leading-relaxed">{{ project.description }}</p>
+
+            <!-- Tech stack badges -->
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span
+                v-for="tech in project.stack"
+                :key="tech"
+                class="text-xs px-2.5 py-1 rounded-md bg-gray-600/50 text-gray-300 font-mono"
+              >
+                {{ tech }}
+              </span>
+            </div>
+
+            <!-- Screenshots -->
+            <div
+              v-if="project.desktopImg || project.mobileImg || project.desktopImgs"
+              class="flex gap-4 mb-5 items-end"
+            >
+              <!-- Single desktop -->
+              <div v-if="project.desktopImg" class="flex flex-col gap-1.5">
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Monitor :size="12" /> Desktop</span>
+                <img
+                  :src="getImage(project.desktopImg)"
+                  class="thumb"
+                  alt=""
+                  @click="openFromProject(project, project.desktopImg)"
+                />
               </div>
-              <div>
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/pet-timer1.png" target="_blank">
-                  <img class="w-50 rounded-xl" src="@/assets/images/pet-timer1.png" alt="">
-                </a>
+              <!-- Multiple desktop -->
+              <div v-if="project.desktopImgs" class="flex flex-col gap-1.5">
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Monitor :size="12" /> Desktop</span>
+                <div class="flex gap-2">
+                  <img
+                    v-for="img in project.desktopImgs"
+                    :key="img"
+                    :src="getImage(img)"
+                    class="thumb"
+                    alt=""
+                    @click="openFromProject(project, img)"
+                  />
+                </div>
+              </div>
+              <!-- Single mobile -->
+              <div v-if="project.mobileImg" class="flex flex-col gap-1.5">
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Smartphone :size="12" /> Mobile</span>
+                <img
+                  :src="getImage(project.mobileImg)"
+                  class="thumb"
+                  alt=""
+                  @click="openFromProject(project, project.mobileImg)"
+                />
+              </div>
+              <!-- Multiple mobile -->
+              <div v-if="project.mobileImgs" class="flex flex-col gap-1.5">
+                <span class="text-xs text-gray-500 flex items-center gap-1"><Smartphone :size="12" /> Mobile</span>
+                <div class="flex gap-2">
+                  <img
+                    v-for="img in project.mobileImgs"
+                    :key="img"
+                    :src="getImage(img)"
+                    class="thumb"
+                    alt=""
+                    @click="openFromProject(project, img)"
+                  />
+                </div>
               </div>
             </div>
-            <div class="">
-              <div class="flex gap-2 my-3">
-                <Smartphone />
-                <p>мобильная версия</p>
-              </div>
-              <div>            
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/pet-timer2.png" target="_blank">
-                  <img class="w-30 rounded-xl lg:mx-0 mx-auto" src="@/assets/images/pet-timer2.png" alt="">
-                </a>            
-              </div>
-            </div>
-          </div> -->
-          <div class="flex gap-2 mt-10">
-            <ExternalLink />
-            <a class="" target="_blank" href="https://pet-timer.vercel.app/">https://pet-timer.vercel.app/</a>
-          </div>
-        </div>
-        <div class="bg-gray-800/50 p-5">
-          <h2>1. Сайт. Личный кабинет арендатора</h2>
-          <p>HTML/CSS/React</p>
-          <div class="lg:flex lg:h-40 h-70 overflow-hidden">
-            <div class="lg:w-1/2">
-              <div class="flex gap-2 my-3">
-                <Monitor />
-                <p>десктопная версия</p>
-              </div>
-              <div>
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/arm-kdm (1).png" target="_blank">
-                  <img class="w-50 rounded-xl" src="@/assets/images/arm-kdm (1).png" alt="">
-                </a>
-              </div>
-            </div>
-            <div class="">
-              <div class="flex gap-2 my-3">
-                <Smartphone />
-                <p>мобильная версия</p>
-              </div>
-              <div>            
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/arm-kdm-mobile.png" target="_blank">
-                  <img class="w-30 rounded-xl lg:mx-0 mx-auto" src="@/assets/images/arm-kdm-mobile.png" alt="">
-                </a>            
-              </div>
-            </div>
-          </div>
-          <div class="flex gap-2 mt-10">
-            <ExternalLink />
-            <a class="" target="_blank" href="https://arenda.aokdm.ru">https://arenda.aokdm.ru</a>
-          </div>
-        </div>
-        <div class="bg-gray-800/50 p-5">
-          <h2>2. Внутренний сервис по учету документации, имущества, товара и т.п.</h2>
-          <p>HTML/CSS/Vue2</p>
-          <div class="lg:flex lg:h-40 h-70 overflow-hidden">
-            <div class="lg:w-1/2">
-              <div class="flex gap-2 my-3">
-                <Monitor />
-                <p>десктопная версия</p>
-              </div>
-              <div>
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/agreements.png" target="_blank">
-                  <img class="w-50 rounded-xl" src="@/assets/images/agreements.png" alt="">
-                </a>
-              </div>
-            </div>
-            <div class="">
-              <div class="flex gap-2 my-3">
-                <Smartphone />
-                <p>мобильная версия</p>
-              </div>
-              <div>            
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/agreements-mobile.png" target="_blank">
-                  <img class="w-30 rounded-xl lg:mx-0 mx-auto" src="@/assets/images/agreements-mobile.png" alt="">
-                </a>            
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-800/50 p-5">
-          <h2>3. Внутренний сервис по учету документации, имущества, товара и т.п. (backend)</h2>
-          <p>PHP/MySQL</p>
-          <div class="flex h-40 overflow-hidden pt-3">
-            <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/php-sql.png" target="_blank">
-              <img class="w-50 rounded-xl" src="@/assets/images/php-sql.png" alt="">
-            </a>
-          </div>
-        </div>
-        <div class="bg-gray-800/50 p-5">
-          <h2>4. E-mail рассылка по заказу, офомленному на сайте</h2>
-          <p>HTML/CSS - tag table/adaptive/dark theme</p>
-          <div class="lg:flex lg:h-50 h-60 overflow-hidden">
-            <div class="lg:w-1/2">
-              <div class="flex gap-2 my-3">
-                <Monitor />
-                <p>десктопная версия</p>
-              </div>
-              <div class="flex gap-5">
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/uc-letter.png" target="_blank">
-                  <img class="w-30 rounded-xl" src="@/assets/images/uc-letter.png" alt="">
-                </a>
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/pe-letter.png" target="_blank">
-                  <img class="w-30 rounded-xl" src="@/assets/images/pe-letter.png" alt="">
-                </a>
-              </div>
-            </div>
-            <div class="">
-              <div class="flex gap-2 my-3">
-                <Smartphone />
-                <p>мобильная версия</p>
-              </div>
-              <div class="flex gap-5">
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/uc-letter-mobile.png" target="_blank">
-                  <img class="w-30 rounded-xl" src="@/assets/images/uc-letter-mobile.png" alt="">
-                </a>
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/pe-letter-mobile.png" target="_blank">
-                  <img class="w-30 rounded-xl" src="@/assets/images/pe-letter-mobile.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-800/50 p-5">
-          <h2>5. E-mail рассылка по передаче показаний счетчиков</h2>
-          <p>HTML/CSS - tag table/adaptive/dark theme</p>
-          <div class="lg:flex lg:h-40 h-90 overflow-hidden">
-            <div class="lg:w-1/2">
-              <div class="flex gap-2 my-3">
-                <Monitor />
-                <p>десктопная версия</p>
-              </div>
-              <div>
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/arm-kdm-letter.png" target="_blank">
-                  <img class="w-30 rounded-xl lg:mx-0 mx-auto" src="@/assets/images/arm-kdm-letter.png" alt="">
-                </a>
-              </div>
-            </div>
-            <div class="" target="_blank">
-              <div class="flex gap-2 my-3">
-                <Smartphone />
-                <p>мобильная версия</p>
-              </div>
-              <div>            
-                <a href="https://github.com/alv1k/my_resume/raw/main/src/assets/images/arm-kdm-letter-mobile.png" target="_blank">
-                  <img class="w-30 rounded-xl lg:mx-0 mx-auto" src="@/assets/images/arm-kdm-letter-mobile.png" alt="">
-                </a>            
-              </div>
+
+            <!-- Links -->
+            <div class="flex gap-4 mt-auto pt-3 border-t border-gray-700/50">
+              <a
+                v-if="project.link"
+                :href="project.link"
+                target="_blank"
+                class="inline-flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                <ExternalLink :size="14" />
+                <span>Открыть</span>
+              </a>
+              <a
+                v-if="project.github"
+                :href="project.github"
+                target="_blank"
+                class="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-300 transition-colors"
+              >
+                <Github :size="14" />
+                <span>GitHub</span>
+              </a>
+              <span
+                v-if="!project.link && !project.github"
+                class="text-sm text-gray-600 italic"
+              >
+                Закрытый проект
+              </span>
             </div>
           </div>
         </div>
       </div>
     </Transition>
+
+    <!-- Lightbox -->
+    <Teleport to="body">
+      <Transition name="lightbox">
+        <div v-if="lightboxOpen" class="lightbox-overlay" @click.self="closeLightbox">
+          <!-- Close -->
+          <button class="lightbox-btn lightbox-close" @click="closeLightbox">
+            <X :size="24" />
+          </button>
+
+          <!-- Prev -->
+          <button
+            v-if="lightboxImages.length > 1"
+            class="lightbox-btn lightbox-prev"
+            :class="{ 'opacity-30 pointer-events-none': lightboxIndex === 0 }"
+            @click="lightboxPrev"
+          >
+            <ChevronLeft :size="28" />
+          </button>
+
+          <!-- Image -->
+          <img
+            :src="lightboxImages[lightboxIndex]"
+            class="lightbox-img"
+            alt=""
+            @click.stop
+          />
+
+          <!-- Next -->
+          <button
+            v-if="lightboxImages.length > 1"
+            class="lightbox-btn lightbox-next"
+            :class="{ 'opacity-30 pointer-events-none': lightboxIndex === lightboxImages.length - 1 }"
+            @click="lightboxNext"
+          >
+            <ChevronRight :size="28" />
+          </button>
+
+          <!-- Counter -->
+          <div v-if="lightboxImages.length > 1" class="lightbox-counter">
+            {{ lightboxIndex + 1 }} / {{ lightboxImages.length }}
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
+
 <style scoped>
-/* Анимация появления/исчезновения */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 1.5s ease;
@@ -194,4 +364,108 @@ onMounted(() => {
   opacity: 0;
 }
 
+.card-project {
+  display: flex;
+  flex-direction: column;
+  background: rgba(31, 41, 55, 0.5);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-project:hover {
+  border-color: rgba(96, 165, 250, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Thumbnails */
+.thumb {
+  max-height: 8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  object-fit: cover;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.thumb:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.2);
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.lightbox-btn {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+.lightbox-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-close {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+.lightbox-prev {
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lightbox-next {
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-counter {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Lightbox transition */
+.lightbox-enter-active,
+.lightbox-leave-active {
+  transition: opacity 0.25s ease;
+}
+.lightbox-enter-from,
+.lightbox-leave-to {
+  opacity: 0;
+}
 </style>

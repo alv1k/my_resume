@@ -64,7 +64,8 @@
             { x: 3, y: 12, info: 'перерыв' },
             { x: 4, y: 45, info: 'семантическая, адаптивная верстка' },
             { x: 5, y: 66, info: 'анимации' },
-            { x: 6, y: 86, info: 'кросс-браузерная верстка' }          
+            { x: 6, y: 86, info: 'кросс-браузерная верстка' },
+            { x: 7, y: 90, info: 'email-шаблоны, продвинутая верстка' }
           ],
         },
         {
@@ -75,18 +76,32 @@
             { x: 3, y: 12, info: "перерыв" },
             { x: 4, y: 55, info: "сематическая, адаптивная верстка" },
             { x: 5, y: 76, info: "grid-сетки" },
-            { x: 6, y: 83, info: "кросс-браузерная верстка" }
+            { x: 6, y: 83, info: "кросс-браузерная верстка" },
+            { x: 7, y: 88, info: "Tailwind CSS, анимации" }
           ],
         },
         {
           name: 'JS',
           data: [
-            { x: 1,y: 0, info: 'не использовался' },
-            { x: 2,y: 0, info: 'не использовался' },
-            { x: 3,y: 0, info: 'не использовался' },
-            { x: 4,y: 10, info: 'DOM-дерево, анимации' },
-            { x: 5,y: 55, info: 'фрейворк vue2/vue3' },
-            { x: 6,y: 76, info: 'react' },
+            { x: 1, y: 0, info: 'не использовался' },
+            { x: 2, y: 0, info: 'не использовался' },
+            { x: 3, y: 0, info: 'не использовался' },
+            { x: 4, y: 10, info: 'DOM-дерево, анимации' },
+            { x: 5, y: 55, info: 'фреймворк vue2/vue3' },
+            { x: 6, y: 76, info: 'react' },
+            { x: 7, y: 82, info: 'react + коммерческие проекты' }
+          ],
+        },
+        {
+          name: 'TypeScript',
+          data: [
+            { x: 1, y: 0, info: 'не использовался' },
+            { x: 2, y: 0, info: 'не использовался' },
+            { x: 3, y: 0, info: 'не использовался' },
+            { x: 4, y: 0, info: 'не использовался' },
+            { x: 5, y: 0, info: 'не использовался' },
+            { x: 6, y: 20, info: 'первые проекты' },
+            { x: 7, y: 50, info: 'registry20prod, stopwatchapp' }
           ],
         },
         {
@@ -98,12 +113,25 @@
             { x: 4, y: 0, info: 'не использовался' },
             { x: 5, y: 40, info: 'auth, cookies, SELECT * FROM' },
             { x: 6, y: 75, info: 'вложенные запросы' },
+            { x: 7, y: 75, info: 'поддержка существующих проектов' }
+          ],
+        },
+        {
+          name: 'Python',
+          data: [
+            { x: 1, y: 0, info: 'не использовался' },
+            { x: 2, y: 0, info: 'не использовался' },
+            { x: 3, y: 0, info: 'не использовался' },
+            { x: 4, y: 0, info: 'не использовался' },
+            { x: 5, y: 0, info: 'не использовался' },
+            { x: 6, y: 0, info: 'не использовался' },
+            { x: 7, y: 35, info: 'vpn-service: бот, сайт' }
           ],
         }
       ],
       xaxis: {
         type: 'category',
-        categories: ['2007', '2013', '2016', '2020', '2024', 'now'] 
+        categories: ['2007', '2013', '2016', '2020', '2024', '2025', '2026']
       },
       tooltip: {
         custom: function({ series, seriesIndex, dataPointIndex, w }) {
@@ -147,18 +175,8 @@
           },
       },
       
-      series:[1,2,3
-          //  { value: 30, name: 'Ответственность' },
-          // { value: 30, name: 'Коммуникабельность' },
-          // { value: 40, name: 'Пунктуальность' }
-  
-        // {
-        //   name: 'Ответственность',
-        //   data: 30,
-        // },
-        
-      ],
-      
+      series: [35, 25, 15, 10, 10, 5],
+      labels: ['HTML/CSS', 'JavaScript', 'TypeScript', 'PHP/MySQL', 'Vue/React', 'Python'],
     }
 
     var lineChart = new ApexCharts(apexChart.value, lineOptions);
@@ -190,9 +208,10 @@
         <p class="flex gap-2"><Keyboard />Должность: front-end разработчик</p>
       </div>
       <div class="lg:text-start text-center">
-        <p>HTML/CSS</p>
-        <p>JS(Vue2/React)</p>
+        <p>HTML/CSS/Tailwind</p>
+        <p>JS/TS (Vue2/Vue3/React)</p>
         <p>PHP/MySQL</p>
+        <p>Python</p>
         <a href="https://github.com/alv1k/" target="_blank">github link</a>
       </div>
     </div>

@@ -11,14 +11,14 @@ export const useUserStore = defineStore('user', {
       phone_number: '9142364278',
       email: 'alekseevaalena442@gmail.com',
       location: 'Якутск, мкр. Марха',
-      experience: [ 
+      experience: [
         {
           organization: 'freelance',
           description: '',
           start_date: '2025',
           end_date: null,
-          position: 'front-end разработчик',
-          responsibilities: 'разработка личного кабинета арендателя'
+          position: 'full-stack разработчик',
+          responsibilities: 'разработка личного кабинета арендателя (React), сервис учета финансов и планирования (TypeScript/Vue), VPN-сервис с ботом и сайтом (Python)'
         },
         {
           organization: 'venture',
@@ -27,15 +27,15 @@ export const useUserStore = defineStore('user', {
           end_date: '2025',
           position: 'front-end разработчик',
           responsibilities: 'поддержка действующих интернет-магазинов Планета Электро/Юником, доработка портала для внутреннего учета'
-        },     
+        },
         {
-          organization: 'образовательные огранизации',
+          organization: 'образовательные организации',
           description: '',
           start_date: '2021',
           end_date: '2024',
           position: 'преподаватель программирования',
           responsibilities: 'обучение детей школьного возраста программированию по направлениям: HTML/CSS/JS/PHP/MySQL/Java'
-        },     
+        },
       ],
       hobby: [
         {

@@ -58,6 +58,7 @@ const projects = computed(() => [
     type: 'fullstack',
     link: 'https://registry20prod.vercel.app',
     github: 'https://github.com/alv1k/registry20prod',
+    desktopImg: 'Registry20.png',
   },
   {
     title: i18n.t('proj_tenant_title'),
@@ -74,8 +75,9 @@ const projects = computed(() => [
     description: i18n.t('proj_vpn_desc'),
     stack: ['Python'],
     type: 'fullstack',
-    link: null,
+    link: 'https://tiinservice.ru',
     github: 'https://github.com/alv1k/vpn-service',
+    desktopImg: 'tiinservice.png',
   },
   {
     title: i18n.t('proj_accounting_title'),
@@ -94,7 +96,7 @@ const projects = computed(() => [
     type: 'backend',
     link: null,
     github: null,
-    desktopImg: 'php-sql.png',
+    desktopImg: 'php-sql2.png',
   },
   {
     title: i18n.t('proj_timer_title'),

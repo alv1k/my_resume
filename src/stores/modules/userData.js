@@ -4,9 +4,16 @@ import { useI18nStore } from './i18n'
 const experienceData = {
   ru: [
     {
-      organization: 'freelance',
+      organization: 'НВК Саха',
       start_date: '2025',
       end_date: null,
+      position: 'React Native разработчик',
+      responsibilities: 'доработка приложения компании (React Native)'
+    },
+    {
+      organization: 'freelance',
+      start_date: 'март 2025',
+      end_date: 'сентябрь 2025',
       position: 'full-stack разработчик',
       responsibilities: 'разработка личного кабинета арендателя (React), сервис учета финансов и планирования (TypeScript/Vue), VPN-сервис с ботом и сайтом (Python)'
     },
@@ -27,9 +34,16 @@ const experienceData = {
   ],
   en: [
     {
-      organization: 'freelance',
+      organization: 'NVK Sakha',
       start_date: '2025',
       end_date: null,
+      position: 'React Native Developer',
+      responsibilities: 'finalizing the company`s application (React Native)'
+    },
+    {
+      organization: 'freelance',
+      start_date: 'march 2025',
+      end_date: 'september 2025',
       position: 'Full-stack Developer',
       responsibilities: 'Tenant portal development (React), finance & planning service (TypeScript/Vue), VPN service with bot and website (Python)'
     },
